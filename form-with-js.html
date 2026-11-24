@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Part 3 - Enhance Your Contact Form with JavaScript">
+    <title>Form with js</title>
+    <link rel="icon" type="image/png" href="assets/imgs/cat.png">
+    <link rel="stylesheet" href="style.css">
+    <script src="form.js" defer></script>
+    <script src="theme.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <nav aria-label="Main navigation">
+            <ul>
+                <li>
+                    <a href="index.html" aria-label="Home">
+                        <img src="assets/imgs/cat.png"
+                             alt="Cute cat"
+                             width="35"
+                             height="35">
+                    </a>
+                </li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="work.html">Work</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="experiments.html">Experiments</a></li>
+                <li><a href="form-no-js.html">Form, no JS</a></li>
+                <li><a href="form-with-js.html">Form with JS</a></li>
+                <li><button type="button" id="theme-toggle" hidden>Switch to Dark Mode</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main> 
+        <p>Fields marked with <span style="color:#b42318">*</span> are required.</p>
+
+        <form action="https://httpbin.org/post" method="post">
+            <fieldset>
+                <legend>Contact form</legend>
+                
+                <p>
+                    <label for="name">Name (1-100 characters):</label>
+                    <input type="text" id="name" name="name" 
+                            autocomplete="name"
+                            minlength="1" maxlength="100" 
+                            required
+                            aria-describedby="name-error">
+                </p>
+
+                <p>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" 
+                            autocomplete="email" 
+                            required
+                            aria-describedby="email-error">
+                </p>
+
+                <p> 
+                    <label for="comments">Comments (10-1000 characters):</label>
+                    <textarea id="comments" name="comments" 
+                                rows="5" 
+                                minlength="10" maxlength="1000"
+                                required
+                                aria-describedby="comments-error comments-info"></textarea>
+                </p>
+
+                <div id="error-messages" aria-live="polite"></div>
+
+                <p id="comment-info" aria-live="polite" hidden>1000 characters remaining.</p>
+
+                <input type="hidden" name="possible_bot" value="true">
+
+                <input type="hidden" name="form-errors" id="form-errors">
+
+                <button type="submit">Submit</button>
+
+            </fieldset>
+        </form>
+    </main>
+</body>
+</html>
