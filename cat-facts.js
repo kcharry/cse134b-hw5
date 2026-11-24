@@ -43,34 +43,30 @@ class CatFacts extends HTMLElement {
         const isCompact = this.hasAttribute("compact");
         this.heading.hidden = isCompact;
         this.status.hidden = isCompact;
-
     }
 
-   async loadFact() {
-    this.status.textContent = "Loading cat fact...";
-    this.nextButton.disabled = true;
+    async loadFact() {
+        this.status.textContent = "Loading cat fact...";
 
-    try {
-        const response = await fetch("https://catfact.ninja/fact");
+        try {
+            const response = await fetch("https://catfact.ninja/fact");
 
-        if (!response.ok) {
-            throw new Error("Request failed");
+            if (!response.ok) {
+                throw new Error("Request failed");
+            }
+
+            const data = await response.json();
+            if (typeof data?.fact !== "string") {
+                throw new Error("Invalid response");
+            }
+
+            this.factDisplay.textContent = data.fact;
+            this.status.textContent = "Now you know!";
+        } catch (error) {
+            this.status.textContent = "Could not load a cat fact, try again!";
+            console.error(error);
         }
-
-        const data = await response.json();
-        if (typeof data?.fact !== "string") {
-            throw new Error("Invalid response");
-        }
-
-        this.factDisplay.textContent = data.fact;
-        this.status.textContent = "Now you know!";
-    } catch (error) {
-        this.status.textContent = "Could not load a cat fac, try again!!";
-        console.error(error);
-    } finally {
-        this.nextButton.disabled = false;
     }
-}
 }
 
 // register  custom element
@@ -81,7 +77,41 @@ document.addEventListener("DOMContentLoaded", () => {
     const catFacts = document.getElementById("cat-facts-component");
     const compactToggle = document.getElementById("compact-toggle");
 
+    function updateToggleLabel() {
+        compactToggle.textContent = catFacts.hasAttribute("compact")
+            ? "Switch to Expanded View"
+            : "Switch to Compact View";
+    }
+    let savedMode = "expanded";
+
+    try {
+        const storedMode = localStorage.getItem("hw5-cat-facts-mode");
+
+        if (storedMode === "compact" || storedMode === "expanded") {
+            savedMode = storedMode;
+        }
+    } catch (error) {
+        console.error("Could not read saved preference:", error);
+    }
+
+    // apply restored preference
+    catFacts.toggleAttribute("compact", savedMode === "compact");
+    updateToggleLabel();
+
+    // save preference when button is clicked
     compactToggle.addEventListener("click", () => {
         catFacts.toggleAttribute("compact");
+
+        const newMode = catFacts.hasAttribute("compact")
+            ? "compact"
+            : "expanded";
+
+        updateToggleLabel();
+
+        try {
+            localStorage.setItem("hw5-cat-facts-mode", newMode);
+        } catch (error) {
+            console.error("Could not save preference:", error);
+        }
     });
 });

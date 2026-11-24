@@ -442,6 +442,31 @@ footer p {
     animation-duration: 0.5s;
 }
 
+/* Cat Facts component theme */
+cat-facts {
+    --cat-facts-background: var(--color-surface, white);
+    --cat-facts-text: var(--color-text, #302c2b);
+    --cat-facts-border: var(--color-border, #e4d8d4);
+    --cat-facts-focus: var(--color-focus, #a65370);
+
+    display: block;
+    margin: 1rem 0;
+}
+
+cat-facts div {
+    padding: 1rem;
+    border: 1px solid var(--cat-facts-border, #e4d8d4);
+    border-radius: 0.5rem;
+    background: var(--cat-facts-background, white);
+    color: var(--cat-facts-text, #302c2b);
+}
+
+cat-facts button:focus {
+    outline: 3px solid var(--cat-facts-focus, #a65370);
+    outline-offset: 3px;
+}
+
+
 /* Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
     ::view-transition-old(root),
