@@ -1,0 +1,112 @@
+---
+import Footer from "../components/Footer.astro";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn more about Kathy, her background, hobbies, and interests.">
+    <title>About Me | Kathy's Portfolio</title>
+    <link rel="icon" type="image/png" href="/assets/imgs/cat.png">
+    <link rel="stylesheet" href="/style.css">
+    <script src="/theme.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <nav aria-label="Main navigation">
+            <ul>
+                <li>
+                    <a href="/" aria-label="Home">
+                        <img src="/assets/imgs/cat.png"
+                             alt="Cute cat"
+                             width="35"
+                             height="35">
+                    </a>
+                </li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="work.html">Work</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="experiments.html">Experiments</a></li>
+                <li><a href="form-no-js.html">Form, no JS</a></li>
+                <li><a href="form-with-js.html">Form with JS</a></li>
+                <li><button type="button" id="theme-toggle" hidden>Switch to Dark Mode</button></li>
+            </ul>
+        </nav>
+    </header>
+
+   
+    <main>
+        <h1>About Me</h1>
+
+        <!-- Part 1: Background -->
+        <section aria-labelledby="background-heading">
+            <h2 id="background-heading">Background</h2>
+
+            <picture>
+                <source srcset="/assets/imgs/placeholder.png" type="image/png">
+                <img src="/assets/imgs/placeholder.png"
+                    alt="Placeholder image representing my background"
+                    width="300">
+            </picture>
+
+            <p>
+                Placeholder text about my background goes here.
+                I can share where I'm from, what I'm studying, and
+                how I became interested in computer science.
+            </p>
+        </section>
+
+        <!-- Part 2: Hobbies -->
+        <section aria-labelledby="hobbies-heading">
+            <h2 id="hobbies-heading">Hobbies</h2>
+
+            <picture>
+                <source srcset="/assets/imgs/placeholder.png" type="image/png">
+                <img src="/assets/imgs/placeholder.png"
+                    alt="Placeholder image representing my background"
+                    width="300">
+            </picture>
+
+            <p>
+                Placeholder text about my hobbies goes here.
+                I can talk about what I enjoy outside of school,
+                such as exploring new food spots, going to concerts,
+                and spending time at the beach.
+            </p>
+        </section>
+
+        <!-- Part 3: Photo Gallery -->
+        <section aria-labelledby="gallery-heading">
+            <h2 id="gallery-heading">Photo Gallery</h2>
+
+            <div>
+                <button type="button" aria-label="Previous photos">
+                    &#8592;
+                </button>
+
+                <img src="/assets/imgs/placeholder.png"
+                    alt="Gallery photo 1"
+                    width="200">
+
+                <img src="/assets/imgs/placeholder.png"
+                    alt="Gallery photo 2"
+                    width="200">
+
+                <img src="/assets/imgs/placeholder.png"
+                    alt="Gallery photo 3"
+                    width="200">
+
+                <button type="button" aria-label="Next photos">
+                    &#8594;
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <Footer /> 
+
+</body>
+</html>
